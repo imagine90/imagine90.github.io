@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hello World | Hexo</title>
+  <title>函数指针和指针函数 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="指针函数和函数指针的使用以及区分….">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
+<meta property="og:title" content="函数指针和指针函数">
 <meta property="og:url" content="http://yoursite.com/2020/06/10/hello-world/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="指针函数和函数指针的使用以及区分….">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-06-10T06:06:05.636Z">
-<meta property="article:modified_time" content="2020-06-10T12:36:22.104Z">
+<meta property="article:modified_time" content="2020-06-11T12:07:17.423Z">
 <meta property="article:author" content="One_Piece">
 <meta property="article:tag" content="随笔">
 <meta name="twitter:card" content="summary">
@@ -84,9 +84,7 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
-		        
-					<a class="qq" target="_blank" href="/assets/2.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="github" target="_blank" href="https://github.com/imagine90/stm32" title="github"><i class="icon-github"></i></a>
 		        
 					<a class="mail" target="_blank" href="mailto:1454448188@qq.com" title="mail"><i class="icon-mail"></i></a>
 		        
@@ -125,9 +123,7 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
-			        
-						<a class="qq" target="_blank" href="/assets/2.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="github" target="_blank" href="https://github.com/imagine90/stm32" title="github"><i class="icon-github"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:1454448188@qq.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -169,7 +165,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      函数指针和指针函数
     </h1>
   
 
@@ -182,19 +178,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <p><strong>指针函数和函数指针的使用以及区分….</strong><br> <a id="more"></a> </p>
+<h2 id="指针函数"><a href="#指针函数" class="headerlink" title="指针函数"></a>指针函数</h2><p>指针函数，简而言之就是一个返回指针的函数<br>int funtion();      返回整型变量<br>int *funtion1();    返回指向整型变量的指针 </p>
+<h2 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h2><p>函数指针，说白了就是一个指向函数的指针。函数指针？是的，程序中的每一个函数都位于内存中的某一个位置，所以存在指向那个位置的指针是完全有可能。</p>
+<pre><code class="bash">int f(int a)
+{
+    <span class="built_in">return</span> a;
+}
+//简单声明一个函数指针并不意味着马上就可以使用，和其他指针一样，对函数指针访问之前必须把它初始化为指向某个函数，才能使用。
+int (*p)(int) = &amp;f;  
+//函数指针的定义并初始化 定义一个指向 返回值为整型且传入一个整型参数 的函数类型的指针
+int ans;
+//三种方式调用函数
+ans = f(25); 
+//1编译器会把它转换成函数指针
+ans = (*p)(25); 
+//2它把函数指针转换为一个函数名。这个转换并不是真正需要的，因为编译器在执行函数调用操作符之前又会把它转换回去。这个函数的效果就和前一句是一样的
+ans = p(25);  
+//3间接访问操作并非必须，因为编译器需要是一个函数指针。</code></pre>
+<h3 id="为了能更好的理解指针函数和函数指针的区分"><a href="#为了能更好的理解指针函数和函数指针的区分" class="headerlink" title="为了能更好的理解指针函数和函数指针的区分"></a>为了能更好的理解指针函数和函数指针的区分</h3><p>举些栗子：  </p>
+<blockquote>
+<p>int <em>f()<br> // 首先执行的是函数调用操作符,因为它的优先级高于间接访问操作符，所以是函数<br>int (</em>f)(); //函数指针<br>int <em>(</em>f)();  //和前面的基本一样，f也是一个函数指针，只是所指向的函数的返回值是一个整型指针</p>
+</blockquote>
 
       
 
@@ -347,7 +352,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#指针函数"><span class="toc-number">1.</span> <span class="toc-text">指针函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数指针"><span class="toc-number">2.</span> <span class="toc-text">函数指针</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为了能更好的理解指针函数和函数指针的区分"><span class="toc-number">2.1.</span> <span class="toc-text">为了能更好的理解指针函数和函数指针的区分</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
