@@ -16,7 +16,7 @@
 <meta property="og:description" content="指针函数和函数指针的使用以及区分….">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-06-10T06:06:05.636Z">
-<meta property="article:modified_time" content="2020-06-11T14:25:32.233Z">
+<meta property="article:modified_time" content="2020-06-11T14:58:58.801Z">
 <meta property="article:author" content="One_Piece">
 <meta property="article:tag" content="随笔">
 <meta name="twitter:card" content="summary">
@@ -58,7 +58,7 @@
 		<nav class="header-menu">
 			<ul>
 			
-				<li><a href="/">主页</a></li>
+				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">主页</a></li>
 	        
 				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 	        
@@ -134,7 +134,7 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
+					<li style="width: 33.333333333333336%"><a href="/tags/%E9%9A%8F%E7%AC%94/">主页</a></li>
 		        
 					<li style="width: 33.333333333333336%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 		        
@@ -181,9 +181,9 @@
         <p><strong>指针函数和函数指针的使用以及区分….</strong><br> <a id="more"></a> </p>
 <h2 id="指针函数"><a href="#指针函数" class="headerlink" title="指针函数"></a>指针函数</h2><p>指针函数，简而言之就是一个返回指针的函数<br>int funtion();      返回整型变量<br>int *funtion1();    返回指向整型变量的指针 </p>
 <h2 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h2><p>函数指针，说白了就是一个指向函数的指针。函数指针？是的，程序中的每一个函数都位于内存中的某一个位置，所以存在指向那个位置的指针是完全有可能。</p>
-<pre><code class="bash">int f(int a)
+<pre><code>int f(int a)
 {
-    <span class="built_in">return</span> a;
+    return a;
 }
 //简单声明一个函数指针并不意味着马上就可以使用，和其他指针一样，对函数指针访问之前必须把它初始化为指向某个函数，才能使用。
 int (*p)(int) = &amp;f;  
@@ -195,10 +195,9 @@ ans = f(25);
 ans = (*p)(25); 
 //2它把函数指针转换为一个函数名。这个转换并不是真正需要的，因为编译器在执行函数调用操作符之前又会把它转换回去。这个函数的效果就和前一句是一样的
 ans = p(25);  
-//3间接访问操作并非必须，因为编译器需要是一个函数指针。</code></pre>
-<h3 id="为了能更好的理解指针函数和函数指针的区分"><a href="#为了能更好的理解指针函数和函数指针的区分" class="headerlink" title="为了能更好的理解指针函数和函数指针的区分"></a>为了能更好的理解指针函数和函数指针的区分</h3><p>举些栗子：  </p>
+//3间接访问操作并非必须，因为编译器需要是一个函数指针。</code></pre><h3 id="为了能更好的理解指针函数和函数指针的区分"><a href="#为了能更好的理解指针函数和函数指针的区分" class="headerlink" title="为了能更好的理解指针函数和函数指针的区分"></a>为了能更好的理解指针函数和函数指针的区分</h3><p>举些栗子：  </p>
 <blockquote>
-<p>int <em>f()<br> // 首先执行的是函数调用操作符,因为它的优先级高于间接访问操作符，所以是函数<br>int (</em>f)(); //函数指针<br>int <em>(</em>f)();  //和前面的基本一样，f也是一个函数指针，只是所指向的函数的返回值是一个整型指针</p>
+<p>int * f()<br>// 首先执行的是函数调用操作符,因为它的优先级高于间接访问操作符，所以是函数<br>int (* f)();<br>//函数指针<br>int * (* f)();<br>//和前面的基本一样，f也是一个函数指针，只是所指向的函数的返回值是一个整型指针</p>
 </blockquote>
 
       
