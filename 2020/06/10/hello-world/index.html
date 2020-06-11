@@ -16,7 +16,7 @@
 <meta property="og:description" content="指针函数和函数指针的使用以及区分….">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-06-10T06:06:05.636Z">
-<meta property="article:modified_time" content="2020-06-11T15:02:22.930Z">
+<meta property="article:modified_time" content="2020-06-11T15:57:24.211Z">
 <meta property="article:author" content="One_Piece">
 <meta property="article:tag" content="随笔">
 <meta name="twitter:card" content="summary">
@@ -181,25 +181,32 @@
         <p><strong>指针函数和函数指针的使用以及区分….</strong><br> <a id="more"></a> </p>
 <h2 id="指针函数"><a href="#指针函数" class="headerlink" title="指针函数"></a>指针函数</h2><p>指针函数，简而言之就是一个返回指针的函数<br>int funtion();      返回整型变量<br>int *funtion1();    返回指向整型变量的指针 </p>
 <h2 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h2><p>函数指针，说白了就是一个指向函数的指针。函数指针？是的，程序中的每一个函数都位于内存中的某一个位置，所以存在指向那个位置的指针是完全有可能。</p>
-<pre><code>int f(int a)
-{
-    return a;
-}
-//简单声明一个函数指针并不意味着马上就可以使用，和其他指针一样，对函数指针访问之前必须把它初始化为指向某个函数，才能使用。
-int (*p)(int) = &amp;f;  
-//函数指针的定义并初始化 定义一个指向 返回值为整型且传入一个整型参数 的函数类型的指针
-int ans;
-//三种方式调用函数
-ans = f(25); 
-//1编译器会把它转换成函数指针
-ans = (*p)(25); 
-//2它把函数指针转换为一个函数名。这个转换并不是真正需要的，因为编译器在执行函数调用操作符之前又会把它转换回去。这个函数的效果就和前一句是一样的
-ans = p(25);  
-//3间接访问操作并非必须，因为编译器需要是一个函数指针。</code></pre><h3 id="为了能更好的理解指针函数和函数指针的区分"><a href="#为了能更好的理解指针函数和函数指针的区分" class="headerlink" title="为了能更好的理解指针函数和函数指针的区分"></a>为了能更好的理解指针函数和函数指针的区分</h3><p>举些栗子：  </p>
-<blockquote>
-<p>int <em>f()// 首先执行的是函数调用操作符,因为它的优先级高于间接访问操作符，所以是函数<br>int (</em>f)();  //函数指针<br>int <em>(</em>f)();  //和前面的基本一样，f也是一个函数指针，只是所指向的函数的返回值是一个整型指针</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">int f(int a)</span><br><span class="line">&#123;</span><br><span class="line">    return a;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;简单声明一个函数指针并不意味着马上就可以使用，和其他指针一样，对函数指针访问之前必须把它初始化为指向某个函数，才能使用。</span><br><span class="line">int (*p)(int) &#x3D; &amp;f;  </span><br><span class="line">&#x2F;&#x2F;函数指针的定义并初始化 定义一个指向 返回值为整型且传入一个整型参数 的函数类型的指针</span><br><span class="line">int ans;</span><br><span class="line">&#x2F;&#x2F;三种方式调用函数</span><br><span class="line">ans &#x3D; f(25); </span><br><span class="line">&#x2F;&#x2F;1编译器会把它转换成函数指针</span><br><span class="line">ans &#x3D; (*p)(25); </span><br><span class="line">&#x2F;&#x2F;2它把函数指针转换为一个函数名。这个转换并不是真正需要的，因为编译器在执行函数调用操作符之前又会把它转换回去。这个函数的效果就和前一句是一样的</span><br><span class="line">ans &#x3D; p(25);  </span><br><span class="line">&#x2F;&#x2F;3间接访问操作并非必须，因为编译器需要是一个函数指针。</span><br><span class="line">&#96;&#96;&#96; </span><br><span class="line">### 为了能更好的理解指针函数和函数指针的区分</span><br><span class="line">举些栗子：  </span><br><span class="line">&gt; int *f()&#x2F;&#x2F; 首先执行的是函数调用操作符,因为它的优先级高于间接访问操作符，所以是函数  </span><br><span class="line">&gt; int (*f)();  &#x2F;&#x2F;函数指针  </span><br><span class="line">&gt; int *(*f)();  &#x2F;&#x2F;和前面的基本一样，f也是一个函数指针，只是所指向的函数的返回值是一个整型指针  </span><br><span class="line">----</span><br><span class="line">## 为什么要使用函数指针呢？ </span><br><span class="line">有不少人就觉得，本来简单的函数调用，搞得那么复杂干什么？其实在这样比较简单的代码实现中不容易看出来的，的项目比较大，代码变得复杂了以后，函数指针就体现出了优越性。举个栗子，如果我们实现数组的排序，常用的排序方法有很多种，例如：冒泡，选择，快排，插入等。你会发现，其实他们除了函数名不同之外，他们的返回值和传入的参数是一样的。这时候我们需要调用不同的排序方法，就可以使用函数指针函数来实现，我们只需要修改函数指针初始化的地方，而不需要去修改每个调用的地方。  </span><br><span class="line">## 回调函数 </span><br><span class="line">函数指针的一个典型的应用就是回调函数。  </span><br><span class="line">### 什么是回调函数？ </span><br><span class="line">**回调函数就是一个通过函数指针调用的函数。如果你把函数的指针（地址）作为参数出传递给另一个函数，当这个这个指针被用来调用其所指向的函数时，我们就说这是回调函数。回调函数不是由该函数的不是由该函数的实现方直接调用，而是在特定的事件或条件发生时由另外的一方调用的，用于该事件或条件响应。**    </span><br><span class="line"></span><br><span class="line">简单点就是建立一个类似的东西，比如算法库，有冒泡 ，选择等   </span><br><span class="line"></span><br><span class="line">*以下是从网上找到的栗子*    </span><br><span class="line">    </span><br><span class="line">----</span><br></pre></td></tr></table></figure>
+<p>#include &lt;stdio.h&gt;<br>typedef struct _OP{<br>    float (<em>p_add)(float ,float );<br>    float (</em>p_sub)(float ,float );<br>    float (<em>p_mul)(float ,float );<br>    float (</em>p_div)(float ,float );<br>} OP;//定义函数指针结构体<br>float   ADD(float a,float b)<br>{</p>
+<pre><code>return a+b;</code></pre><p>}//加法函数<br>float SUB(float a,float b)<br>{</p>
+<pre><code>return a-b;</code></pre><p>}//减法函数<br>float MUL(float a,float b)<br>{<br>    return a*b;</p>
+<p>}//乘法<br>float DIV(float a,float b)<br>{<br>    return a/b;<br>}//除法<br>void init_op(OP <em>op)<br>{<br>    op-&gt;p_add=ADD;<br>    op-&gt;p_sub=SUB;<br>    op-&gt;p_mul=&MUL;<br>    op-&gt;p_div=&DIV;<br>}//对函数指针初始化<br>float add_sub_mul_div(float a,float b,float (</em>abc)(float,float))<br>{<br>    return (*abc)(a,b);<br>}//回调函数，仔细看该函数的参数，并反复看前面粗体文字回调函数的定义</p>
+<p>int main(int argc, char *argv[])<br>{<br>    OP *op = (OP *)malloc(sizeof(OP));//分配内存空间<br>        init_op(op);</p>
+<pre><code>/* 直接使用函数指针调用函数 */
+printf(&quot;ADD = %f, SUB = %f, MUL = %f, DIV = %f\n&quot;, (op-&gt;p_add)(1.3, 2.2), (*op-&gt;p_sub)(1.3, 2.2),
+        (op-&gt;p_mul)(1.3, 2.2), (*op-&gt;p_div)(1.3, 2.2));
 
+/* 调用回调函数 */
+printf(&quot;ADD = %f, SUB = %f, MUL = %f, DIV = %f\n&quot;,
+        add_sub_mul_div(1.3, 2.2, ADD),
+        add_sub_mul_div(1.3, 2.2, SUB),
+        add_sub_mul_div(1.3, 2.2, MUL),
+        add_sub_mul_div(1.3, 2.2, DIV));</code></pre><p>}</p>
+<pre><code>
+以上是我的个人总结  
+如有说错或有疑惑，请联系我QQ：***1454448188***
+
+
+
+
+
+
+</code></pre>
       
 
       
@@ -351,7 +358,7 @@ ans = p(25);
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#指针函数"><span class="toc-number">1.</span> <span class="toc-text">指针函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数指针"><span class="toc-number">2.</span> <span class="toc-text">函数指针</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为了能更好的理解指针函数和函数指针的区分"><span class="toc-number">2.1.</span> <span class="toc-text">为了能更好的理解指针函数和函数指针的区分</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#指针函数"><span class="toc-number">1.</span> <span class="toc-text">指针函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数指针"><span class="toc-number">2.</span> <span class="toc-text">函数指针</span></a></li></ol>
                     </div>
                 </span>
             </div>
