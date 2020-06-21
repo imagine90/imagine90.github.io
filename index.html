@@ -251,17 +251,44 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="M5311nbiot-模组入坑-（接入华为物联平台）"><a href="#M5311nbiot-模组入坑-（接入华为物联平台）" class="headerlink" title="M5311nbiot 模组入坑 （接入华为物联平台）"></a>M5311nbiot 模组入坑 （接入华为物联平台）</h1><h2 id="华为平台创建"><a href="#华为平台创建" class="headerlink" title="华为平台创建"></a>华为平台创建</h2><p>进入华为物联网开发平台 <a href="https://iot-dev.huaweicloud.com/#/developer-overview" target="_blank" rel="noopener">开发中心</a><br>** 首先创建项目&gt;进入产品开发（自定义一个产品）&gt;Profile定义（属性和命令下达）&gt;插件保存并部署 **     </p>
+        <h1 id="M5311nbiot-模组入坑-（接入华为物联平台）"><a href="#M5311nbiot-模组入坑-（接入华为物联平台）" class="headerlink" title="M5311nbiot 模组入坑 （接入华为物联平台）"></a>M5311nbiot 模组入坑 （接入华为物联平台）</h1><h2 id="华为平台创建"><a href="#华为平台创建" class="headerlink" title="华为平台创建"></a>华为平台创建</h2><p>进入华为物联网开发平台 <a href="https://iot-dev.huaweicloud.com/#/developer-overview" target="_blank" rel="noopener">开发中心</a>     </p>
+<p><strong>首先创建项目&gt;进入产品开发（自定义一个产品）&gt;Profile定义（属性和命令下达）&gt;插件保存并部署</strong></p>
 <blockquote>
-<p>完成profile编写，开始进行虚拟调试，调试成功，就可以新增物理设备<img src="340A4522F39F4B06AF436EA085205CE0" alt="image">      </p>
+<p>完成profile编写，开始进行虚拟调试，调试成功，就可以新增物理设备!     </p>
 </blockquote>
-<pre><code>设备名称随意，设备标识是nb的IMEI 可以通过“AT+CGSN=1”该指令得到IMEI   </code></pre><h2 id="这样物联网平台就设置好了"><a href="#这样物联网平台就设置好了" class="headerlink" title="这样物联网平台就设置好了    "></a>这样物联网平台就设置好了    </h2><h1 id="硬件M5311设置"><a href="#硬件M5311设置" class="headerlink" title="硬件M5311设置"></a>硬件M5311设置</h1><p><img src="F9BE591785D146248206B686E7AD9923" alt="image"><br>先确认模块是否联网成功    </p>
+<pre><code>设备名称随意，设备标识是nb的IMEI 可以通过“AT+CGSN=1”该指令得到IMEI   </code></pre><h2 id="这样物联网平台就设置好了"><a href="#这样物联网平台就设置好了" class="headerlink" title="这样物联网平台就设置好了    "></a>这样物联网平台就设置好了    </h2><h1 id="硬件M5311设置"><a href="#硬件M5311设置" class="headerlink" title="硬件M5311设置"></a>硬件M5311设置</h1><p>先确认模块是否联网成功    </p>
 <blockquote>
 <p>  NB进行开机，对PWR_ON引脚拉低2s以上，再拉高。<br>有返回ip地址说明，已经驻网成功。  </p>
 </blockquote>
-<h3 id="常用的AT指令集"><a href="#常用的AT指令集" class="headerlink" title="常用的AT指令集"></a>常用的AT指令集</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">AT  返回OK  </span><br><span class="line">AT+CIMI 获取SIM卡的CIMI号   </span><br><span class="line">AT+CEREG? 返回&quot;+CEREG:0,1&quot;说明驻网成功。如果第一次使用没驻网成功，可以重启上电    </span><br><span class="line">AT+CSQ  获取NB信号，一般要高于16，否则通信失败。   </span><br><span class="line"></span><br><span class="line">M5311有两种睡眠模式1.深度睡眠 2.浅睡眠  </span><br><span class="line">深度睡眠：需要对PWR_ON进行下降沿，即可唤醒  </span><br><span class="line">浅睡眠：关闭部分外设功能，串口无响应，串口输入两次&quot;AT&quot;即可唤醒。  </span><br><span class="line">AT+CFUN&#x3D;0 10s进入深度睡眠  </span><br><span class="line">AT+SM&#x3D;LOCK 关闭睡眠 </span><br><span class="line">AT+SM&#x3D;LOCK_FOREVER永久关闭睡眠  </span><br><span class="line">AT+SM&#x3D;UNLOCK 睡眠 </span><br><span class="line">AT+SM&#x3D;UNLOCK_FOREVER永久睡眠    </span><br><span class="line">AT+CPSMS&#x3D;0  关闭PSM模式</span><br><span class="line">    </span><br><span class="line">连接华为云平台  </span><br><span class="line">AT+MLWNEW&#x3D;49.4.85.232,5683 创建CT平台设备本地实例   </span><br><span class="line">AT+MLWOPEN&#x3D;&lt;mode&gt;,&lt;keepalivetime&gt;   mode:0 自动接收 1 手动接收    </span><br><span class="line">AT+MLWOPEN&#x3D;1,90</span><br><span class="line">OK</span><br><span class="line">+MLWEVTIND:1 &#x2F;&#x2F; 注册成功</span><br><span class="line">+MLWEVTIND:5 &#x2F;&#x2F; 订阅成功    </span><br><span class="line">AT+MLWCFG&#x3D;1,1 (发送&#x2F;接送) 1 是字符串  0是hex    </span><br><span class="line">&#x2F;&#x2F;发送数据  </span><br><span class="line">AT+MLWSEND&#x3D;&lt;data_leng&gt;,&lt;data&gt;   &#x2F;&#x2F;返回 OK   </span><br><span class="line">    </span><br><span class="line">接收数据    </span><br><span class="line"></span><br><span class="line">+MLWREAD: &lt;read_actual_length&gt;,&lt;remain_length&gt;,&lt;data&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="常用的AT指令集"><a href="#常用的AT指令集" class="headerlink" title="常用的AT指令集"></a>常用的AT指令集</h3><pre><code>AT  返回OK  
+AT+CIMI 获取SIM卡的CIMI号   
+AT+CEREG? 返回&quot;+CEREG:0,1&quot;说明驻网成功。如果第一次使用没驻网成功，可以重启上电    
+AT+CSQ  获取NB信号，一般要高于16，否则通信失败。   
 
+M5311有两种睡眠模式1.深度睡眠 2.浅睡眠  
+深度睡眠：需要对PWR_ON进行下降沿，即可唤醒  
+浅睡眠：关闭部分外设功能，串口无响应，串口输入两次&quot;AT&quot;即可唤醒。  
+AT+CFUN=0 10s进入深度睡眠  
+AT+SM=LOCK 关闭睡眠 
+AT+SM=LOCK_FOREVER永久关闭睡眠  
+AT+SM=UNLOCK 睡眠 
+AT+SM=UNLOCK_FOREVER永久睡眠    
+AT+CPSMS=0  关闭PSM模式
 
+连接华为云平台  
+AT+MLWNEW=49.4.85.232,5683 创建CT平台设备本地实例   
+AT+MLWOPEN=&lt;mode&gt;,&lt;keepalivetime&gt;   mode:0 自动接收 1 手动接收    
+AT+MLWOPEN=1,90
+OK
++MLWEVTIND:1 // 注册成功
++MLWEVTIND:5 // 订阅成功    
+AT+MLWCFG=1,1 (发送/接送) 1 是字符串  0是hex    
+//发送数据  
+AT+MLWSEND=&lt;data_leng&gt;,&lt;data&gt;   //返回 OK   
+
+接收数据    
+
++MLWREAD: &lt;read_actual_length&gt;,&lt;remain_length&gt;,&lt;data&gt;   </code></pre><p>还有一个坑就是买来的M5311的固件是旧的，不支持一些功能。<br>需要对固件进行更新。</p>
 
       
 
