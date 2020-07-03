@@ -6,19 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>函数指针和指针函数 | Hexo</title>
+  <title>Archives: 2020/7 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="指针函数和函数指针的使用以及区分….">
-<meta property="og:type" content="article">
-<meta property="og:title" content="函数指针和指针函数">
-<meta property="og:url" content="http://yoursite.com/2020/06/10/hello-world/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/archives/2020/07/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="指针函数和函数指针的使用以及区分….">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-06-10T06:06:05.636Z">
-<meta property="article:modified_time" content="2020-07-03T15:46:11.145Z">
 <meta property="article:author" content="One_Piece">
-<meta property="article:tag" content="随笔">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -154,100 +149,35 @@
           </div>
           <div id="js-content" class="content-ll">
             
-    <i class="fa fa-thumb-tack"></i>
-    <font color=7D26CD>置顶</font>
-    <span class="post-meta-divider">|</span>
   
-<article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/07/03/%E6%BB%A4%E6%B3%A2%E7%AE%97%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2020-07-03T15:45:35.030Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-03</time>
+</a>
+        </div>
+    	 
   
-    <h1 class="article-title" itemprop="name">
-      函数指针和指针函数
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/07/03/%E6%BB%A4%E6%B3%A2%E7%AE%97%E6%B3%95/">函数指针和指针函数</a>
     </h1>
   
 
-        
-        <a href="/2020/06/10/hello-world/" class="archive-article-date">
-  	<time datetime="2020-06-10T06:06:05.636Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>指针函数和函数指针的使用以及区分….</strong><br> <a id="more"></a> </p>
-<h2 id="指针函数"><a href="#指针函数" class="headerlink" title="指针函数"></a>指针函数</h2><p>指针函数，简而言之就是一个返回指针的函数<br>int funtion();      返回整型变量<br>int *funtion1();    返回指向整型变量的指针 </p>
-<h2 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h2><p>函数指针，说白了就是一个指向函数的指针。函数指针？是的，程序中的每一个函数都位于内存中的某一个位置，所以存在指向那个位置的指针是完全有可能。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">int f(int a)</span><br><span class="line">&#123;</span><br><span class="line">    return a;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;简单声明一个函数指针并不意味着马上就可以使用，和其他指针一样，对函数指针访问之前必须把它初始化为指向某个函数，才能使用。</span><br><span class="line">int (*p)(int) &#x3D; &amp;f;  </span><br><span class="line">&#x2F;&#x2F;函数指针的定义并初始化 定义一个指向 返回值为整型且传入一个整型参数 的函数类型的指针</span><br><span class="line">int ans;</span><br><span class="line">&#x2F;&#x2F;三种方式调用函数</span><br><span class="line">ans &#x3D; f(25); </span><br><span class="line">&#x2F;&#x2F;1编译器会把它转换成函数指针</span><br><span class="line">ans &#x3D; (*p)(25); </span><br><span class="line">&#x2F;&#x2F;2它把函数指针转换为一个函数名。这个转换并不是真正需要的，因为编译器在执行函数调用操作符之前又会把它转换回去。这个函数的效果就和前一句是一样的</span><br><span class="line">ans &#x3D; p(25);  </span><br><span class="line">&#x2F;&#x2F;3间接访问操作并非必须，因为编译器需要是一个函数指针。</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="为了能更好的理解指针函数和函数指针的区分"><a href="#为了能更好的理解指针函数和函数指针的区分" class="headerlink" title="为了能更好的理解指针函数和函数指针的区分"></a>为了能更好的理解指针函数和函数指针的区分</h3><p>举些栗子：  </p>
-<blockquote>
-<p>int* f()// 首先执行的是函数调用操作符,因为它的优先级高于间接访问操作符，所以是函数<br>int (* f)();  //函数指针<br>int * (* f)();  //和前面的基本一样，f也是一个函数指针，只是所指向的函数的返回值是一个整型指针  </p>
-</blockquote>
-<hr>
-<h2 id="为什么要使用函数指针呢？"><a href="#为什么要使用函数指针呢？" class="headerlink" title="为什么要使用函数指针呢？"></a>为什么要使用函数指针呢？</h2><p>有不少人就觉得，本来简单的函数调用，搞得那么复杂干什么？其实在这样比较简单的代码实现中不容易看出来的，的项目比较大，代码变得复杂了以后，函数指针就体现出了优越性。举个栗子，如果我们实现数组的排序，常用的排序方法有很多种，例如：冒泡，选择，快排，插入等。你会发现，其实他们除了函数名不同之外，他们的返回值和传入的参数是一样的。这时候我们需要调用不同的排序方法，就可以使用函数指针函数来实现，我们只需要修改函数指针初始化的地方，而不需要去修改每个调用的地方。  </p>
-<h2 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h2><p>函数指针的一个典型的应用就是回调函数。  </p>
-<h3 id="什么是回调函数？"><a href="#什么是回调函数？" class="headerlink" title="什么是回调函数？"></a>什么是回调函数？</h3><p><strong>回调函数就是一个通过函数指针调用的函数。如果你把函数的指针（地址）作为参数出传递给另一个函数，当这个这个指针被用来调用其所指向的函数时，我们就说这是回调函数。回调函数不是由该函数的不是由该函数的实现方直接调用，而是在特定的事件或条件发生时由另外的一方调用的，用于该事件或条件响应。</strong>    </p>
-<p>简单点就是建立一个类似的东西，比如算法库，有冒泡 ，选择等   </p>
-<p><em>以下是从网上找到的栗子</em>    </p>
-<hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">typedef struct _OP&#123;</span><br><span class="line">    float (*p_add)(float ,float );</span><br><span class="line">    float (*p_sub)(float ,float );</span><br><span class="line">    float (*p_mul)(float ,float );</span><br><span class="line">    float (*p_div)(float ,float );</span><br><span class="line">&#125; OP;&#x2F;&#x2F;定义函数指针结构体</span><br><span class="line">float   ADD(float a,float b)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    return a+b;</span><br><span class="line">&#125;&#x2F;&#x2F;加法函数</span><br><span class="line">float SUB(float a,float b)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    return a-b;</span><br><span class="line">&#125;&#x2F;&#x2F;减法函数</span><br><span class="line">float MUL(float a,float b)</span><br><span class="line">&#123;</span><br><span class="line">    return a*b;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;&#x2F;&#x2F;乘法</span><br><span class="line">float DIV(float a,float b)</span><br><span class="line">&#123;</span><br><span class="line">    return a&#x2F;b;</span><br><span class="line">&#125;&#x2F;&#x2F;除法</span><br><span class="line">void init_op(OP *op)</span><br><span class="line">&#123;</span><br><span class="line">    op-&gt;p_add&#x3D;ADD;</span><br><span class="line">    op-&gt;p_sub&#x3D;SUB;</span><br><span class="line">    op-&gt;p_mul&#x3D;&amp;MUL;</span><br><span class="line">    op-&gt;p_div&#x3D;&amp;DIV;</span><br><span class="line">&#125;&#x2F;&#x2F;对函数指针初始化</span><br><span class="line">float add_sub_mul_div(float a,float b,float (*abc)(float,float))</span><br><span class="line">&#123;</span><br><span class="line">    return (*abc)(a,b);</span><br><span class="line">&#125;&#x2F;&#x2F;回调函数，仔细看该函数的参数，并反复看前面粗体文字回调函数的定义</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">    OP *op &#x3D; (OP *)malloc(sizeof(OP));&#x2F;&#x2F;分配内存空间</span><br><span class="line">        init_op(op);</span><br><span class="line"></span><br><span class="line">        &#x2F;* 直接使用函数指针调用函数 *&#x2F;</span><br><span class="line">        printf(&quot;ADD &#x3D; %f, SUB &#x3D; %f, MUL &#x3D; %f, DIV &#x3D; %f\n&quot;, (op-&gt;p_add)(1.3, 2.2), (*op-&gt;p_sub)(1.3, 2.2),</span><br><span class="line">                (op-&gt;p_mul)(1.3, 2.2), (*op-&gt;p_div)(1.3, 2.2));</span><br><span class="line"></span><br><span class="line">        &#x2F;* 调用回调函数 *&#x2F;</span><br><span class="line">        printf(&quot;ADD &#x3D; %f, SUB &#x3D; %f, MUL &#x3D; %f, DIV &#x3D; %f\n&quot;,</span><br><span class="line">                add_sub_mul_div(1.3, 2.2, ADD),</span><br><span class="line">                add_sub_mul_div(1.3, 2.2, SUB),</span><br><span class="line">                add_sub_mul_div(1.3, 2.2, MUL),</span><br><span class="line">                add_sub_mul_div(1.3, 2.2, DIV));</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>以上是我的个人总结<br>如有说错或有疑惑，请联系我QQ：<strong><em>1454448188</em></strong>,谢谢了。</p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=1394601335&auto=1&height=32"></iframe>
-
-
-
-
-
-
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃鸡腿<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/zhifu.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/weixin.jpg">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-        <div class="article-pop-out tagcloud">
-          <i class="icon-tuding"></i>
-          <a class="article-tag-list-link color3">置顶</a>
-        </div>
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -259,123 +189,46 @@
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>test
-    <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://imagine90.github.io/2020/06/10/hello-world/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
   
-<nav id="article-nav">
-  
-    <a href="/2020/06/21/M5311/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          M5311
-        
-      </div>
-    </a>
-  
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/07/03/%E7%9C%8B%E9%97%A8%E7%8B%97/" class="archive-article-date">
+  	<time datetime="2020-07-03T15:45:12.032Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-03</time>
+</a>
         </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#指针函数"><span class="toc-number">1.</span> <span class="toc-text">指针函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数指针"><span class="toc-number">2.</span> <span class="toc-text">函数指针</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为了能更好的理解指针函数和函数指针的区分"><span class="toc-number">2.1.</span> <span class="toc-text">为了能更好的理解指针函数和函数指针的区分</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么要使用函数指针呢？"><span class="toc-number">3.</span> <span class="toc-text">为什么要使用函数指针呢？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#回调函数"><span class="toc-number">4.</span> <span class="toc-text">回调函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是回调函数？"><span class="toc-number">4.1.</span> <span class="toc-text">什么是回调函数？</span></a></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/07/03/%E7%9C%8B%E9%97%A8%E7%8B%97/">看门狗</a>
+    </h1>
+  
+
+        <div class="article-info info-on-right">
+          
+          
+
         </div>
-        
-    </div>
-</aside>
-
-
-
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
   
   
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -402,8 +255,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
