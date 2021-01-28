@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>看门狗 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="独立看门狗（F4）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="看门狗">
+<meta property="og:url" content="http://yoursite.com/2020/12/22/%E7%9C%8B%E9%97%A8%E7%8B%97/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="独立看门狗（F4）">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-12-22T11:17:55.195Z">
+<meta property="article:modified_time" content="2020-07-03T15:46:10.446Z">
 <meta property="article:author" content="One_Piece">
 <meta name="twitter:card" content="summary">
   
@@ -153,188 +157,195 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-  
+<article id="post-看门狗" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/29/2020%E5%B9%B4/" class="archive-article-date">
-  	<time datetime="2021-01-28T16:00:03.555Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-29</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/29/2020%E5%B9%B4/">2020年</a>
+    <h1 class="article-title" itemprop="name">
+      看门狗
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/12/22/%E7%9C%8B%E9%97%A8%E7%8B%97/" class="archive-article-date">
+        
+        <a href="/2020/12/22/%E7%9C%8B%E9%97%A8%E7%8B%97/" class="archive-article-date">
   	<time datetime="2020-12-22T11:17:55.195Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-22</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/12/22/%E7%9C%8B%E9%97%A8%E7%8B%97/">看门狗</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="独立看门狗（F4）"><a href="#独立看门狗（F4）" class="headerlink" title="独立看门狗（F4）"></a>独立看门狗（F4）</h1><a id="more"></a> 
+<h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>由内部时钟源32kHz提供<br>独立看门狗由专用的低速时钟驱动，即使主时钟发生故障它仍有效<br>为什么要用看门狗？<br>因为单片机常常因为外界的电磁波的影响，会导致程序跑飞 ，程序不能自动复位，影响正常的使用。而看门狗是可以查看单片机的状态的，一旦程序跑飞，没有及时喂狗，就会引起软件的中断，从而让系统复位。<br>看门狗的本质是个减一的计数器。  </p>
+<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>向键值寄存器（IWDG_KP）中写入0xCCCC,开启独立看门狗。<br>当计数器数到0时会产生一个复位信号（IWDG_RESET）.<br>向IWDG_KP写入0xAAAA(喂狗)，自动重装载寄存器IWDG_RLR<br>的值就会重新加载到计数器，从而避免复位。<br><strong>超时时间</strong><br>超时时间尽量选择比估算值大些。<br>超时时间=计数值* 计数器时钟周期。<br>Tout=(rlr+1)x((4x2^prer)/32)<br>prer为看门狗时钟预分频值（IWDG_PR）<br>PR的值： 0-7<br>4x2^prer最大不超过256<br>rlr为看门狗的重装载值（IWDG_RLR）   </p>
+<h2 id="寄存器访问权限"><a href="#寄存器访问权限" class="headerlink" title="寄存器访问权限"></a>寄存器访问权限</h2><p>IWDG_PR和IWDG_RLR寄存器具有写保护功能。必须向IWDG_KP中写入0x5555取消保护。     </p>
+<h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">void IWDG_Init(u8 prer,u16 rlr)</span><br><span class="line">&#123;</span><br><span class="line">    IWDG_KP&#x3D;0x5555;&#x2F;&#x2F;取消对IWDG_PR和IWDG_RLR的写保护        </span><br><span class="line">    while(IWDG_SR&amp;(3&lt;&lt;0));&#x2F;&#x2F;查看状态是否能写入   </span><br><span class="line">    IWDG_PR&#x3D;prer;      &#x2F;&#x2F;分频</span><br><span class="line">    IWDG_RLR&#x3D;rlr;   &#x2F;&#x2F;重装载值</span><br><span class="line">    while(IWDG_SR&amp;(3&lt;&lt;0));     &#x2F;&#x2F;</span><br><span class="line">    IWDG_KP&#x3D;0xAAAA;&#x2F;&#x2F;喂狗</span><br><span class="line">&#125;</span><br><span class="line">void IWDG_Feed(void)</span><br><span class="line">&#123;</span><br><span class="line">    IWDG_KP&#x3D;0xAAAA;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
 
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃鸡腿<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/zhifu.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>test
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://imagine90.github.io/2020/12/22/%E7%9C%8B%E9%97%A8%E7%8B%97/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/12/22/%E6%BB%A4%E6%B3%A2%E7%AE%97%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-12-22T11:17:55.176Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-22</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2021/01/29/2020%E5%B9%B4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          2020年
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/12/22/%E6%BB%A4%E6%B3%A2%E7%AE%97%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">函数指针和指针函数</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/12/22/%E6%BB%A4%E6%B3%A2%E7%AE%97%E6%B3%95/">函数指针和指针函数</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#独立看门狗（F4）"><span class="toc-number">1.</span> <span class="toc-text">独立看门狗（F4）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本介绍"><span class="toc-number">1.1.</span> <span class="toc-text">基本介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工作原理"><span class="toc-number">1.2.</span> <span class="toc-text">工作原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#寄存器访问权限"><span class="toc-number">1.3.</span> <span class="toc-text">寄存器访问权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本配置"><span class="toc-number">1.4.</span> <span class="toc-text">基本配置</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/12/22/M5311/" class="archive-article-date">
-  	<time datetime="2020-12-22T11:17:55.041Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-22</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/12/22/M5311/">M5311</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/12/22/hello-world/" class="archive-article-date">
-  	<time datetime="2020-12-22T11:17:55.005Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/12/22/hello-world/">函数指针和指针函数</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -361,8 +372,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
